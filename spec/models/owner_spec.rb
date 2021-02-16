@@ -3,5 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe Owner, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:owner) { create(:owner) }
+
+  describe 'valid factory' do
+    it { expect(owner).to be_valid }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:phone) }
+  end
+
+  describe 'associations' do
+    it { is_expected.to have_many(:properties).dependent(:destroy) }
+  end
 end

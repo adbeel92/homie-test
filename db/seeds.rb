@@ -1,9 +1,22 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+owners_data = 10.times.map do
+  {
+    name: Faker::Name.name,
+    phone: Faker::PhoneNumber.cell_phone
+  }
+end
+
+owners = Owner.create(owners_data)
+
+properties_data = 100.times.map do
+  {
+    name: "Departamento en #{Faker::Address.city}",
+    description: Faker::Lorem.paragraphs(number: 2).join("\n\n"),
+    rental_price: Faker::Commerce.price(range: 1_000..50_000),
+    status: Property.statuses.keys.sample,
+    owner_id: owners.sample.id
+  }
+end
+
+Property.create(properties_data)
