@@ -1,10 +1,15 @@
 AllCops:
-  NewCops: enable
   TargetRubyVersion: 2.7.2
+  NewCops: enable
+  DefaultFormatter: fuubar
   Exclude:
     - 'bin/**/*'
     - 'db/schema.rb'
   SuggestExtensions: false
+
+inherit_mode:
+  merge:
+    - Exclude
 
 Metrics/BlockLength:
   Exclude:
