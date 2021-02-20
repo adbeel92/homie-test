@@ -33,9 +33,9 @@ module Api
         response_error_json_format(ErrorResponse.record_not_found(Property))
       end
 
-      def property_params
-        params.require(:property).permit(:name, :description, :rental_price, :status, :owner)
-      end
+      # def property_params
+      #   params.require(:property).permit(:name, :description, :rental_price, :status, :owner)
+      # end
     end
   end
 end

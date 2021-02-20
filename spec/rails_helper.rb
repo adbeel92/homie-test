@@ -4,7 +4,11 @@
 require 'spec_helper'
 require 'simplecov'
 
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_group 'Responders', 'app/responders'
+  add_group 'Serializers', 'app/serializers'
+  add_group 'Services', 'app/services'
+end
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)

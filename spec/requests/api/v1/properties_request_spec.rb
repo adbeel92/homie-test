@@ -6,18 +6,52 @@ RSpec.describe 'Api::V1::Properties', type: :request do
   let!(:property) { create(:property) }
 
   describe 'GET #index' do
-    it 'returns http success' do
-      get '/api/v1/properties'
+    context 'with INVALID token' do
+      it 'returns unprocessable request' do
+        get '/api/v1/properties'
 
-      expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context 'with VALID token' do
+      before do
+        generate_token
+      end
+
+      it 'returns http success' do
+        get '/api/v1/properties'
+
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
-      get "/api/v1/properties/#{property.id}"
+    context 'with INVALID token' do
+      it 'returns unprocessable request' do
+        get "/api/v1/properties/#{property.id}"
 
-      expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context 'with VALID token' do
+      before do
+        generate_token
+      end
+
+      it 'returns http success' do
+        get "/api/v1/properties/#{property.id}"
+
+        expect(response).to have_http_status(:success)
+      end
+
+      it 'returns http not found' do
+        get '/api/v1/properties/0'
+
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 

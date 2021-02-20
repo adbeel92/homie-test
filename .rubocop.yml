@@ -4,7 +4,7 @@ AllCops:
   DefaultFormatter: fuubar
   Exclude:
     - 'bin/**/*'
-    - 'db/schema.rb'
+    - 'db/**/*'
   SuggestExtensions: false
 
 inherit_mode:
