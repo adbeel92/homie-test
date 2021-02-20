@@ -24,6 +24,15 @@ This is an API for listings who get properties to be shown at theis sites
 
 ### Installation
 
+#### PostgreSQL
+
+Using Homebrew
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+brew install postgres
+```
+
 #### RVM
 
 Installing RVM
