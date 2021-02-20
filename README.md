@@ -18,13 +18,13 @@ This is an API for listings who get properties to be shown at theis sites
 * Rails admin [https://github.com/sferik/rails_admin/wiki](https://github.com/sferik/rails_admin/wiki)
 * Rspec [https://rspec.info/](https://rspec.info/)
 
-## Requirements
+### Requirements
 
 * [RVM](https://rvm.io). RVM with version [1.29.10](https://rvm.io/blog/2020/03/rvm-1-29-10)
 
-## Installation
+### Installation
 
-### RVM
+#### RVM
 
 Installing RVM
 
@@ -34,7 +34,7 @@ Installing Ruby 2.7.2 with RVM
 
 `rvm install ruby-2.7.2`
 
-### Clone the repository
+#### Clone the repository
 
 `git clone git@github.com:adbeel92/homie-test.git`
 
@@ -42,14 +42,14 @@ Creating a gemset (entering to the directory, the gemset will be created thanks 
 
 `cd ./homie-test`
 
-### Bundler
+#### Bundler
 
 ```
 gem install bundler -v 2.2.4
 bundle install
 ```
 
-### Running the App
+#### Running the App
 
 ```
 rails db:create
