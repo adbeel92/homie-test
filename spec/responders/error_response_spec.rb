@@ -5,11 +5,11 @@ require 'rails_helper'
 RSpec.describe ErrorResponse, type: :response do
   let(:args) do
     {
-      title: 'No hay titulo',
+      title: 'No title',
       status_code: 111,
       code: 201,
-      reasons: { razon: 'Por que yes' },
-      description: 'No hay descripcion'
+      reasons: { razon: 'anything' },
+      description: 'No description'
     }
   end
   let(:owner) { build(:owner) }
@@ -25,10 +25,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns attributes' do
         expect(subject).to(
           have_attributes(
-            title: 'No hay titulo',
+            title: 'No title',
             status_code: 111,
-            reasons: { razon: 'Por que yes' },
-            description: 'No hay descripcion'
+            reasons: { razon: 'anything' },
+            description: 'No description'
           )
         )
       end
@@ -41,7 +41,7 @@ RSpec.describe ErrorResponse, type: :response do
             title: 'translation missing: en.error_codes',
             status_code: nil,
             reasons: {},
-            description: 'Un error ha ocurrido'
+            description: 'An error has occurred'
           )
         )
       end
@@ -52,9 +52,9 @@ RSpec.describe ErrorResponse, type: :response do
     it 'returns a warning json' do
       expect(subject.to_json).to eq(success: false,
                                     error: {
-                                      description: 'No hay descripcion',
-                                      message: 'No hay titulo',
-                                      reasons: { razon: 'Por que yes' }
+                                      description: 'No description',
+                                      message: 'No title',
+                                      reasons: { razon: 'anything' }
                                     })
     end
   end
@@ -63,10 +63,10 @@ RSpec.describe ErrorResponse, type: :response do
     it 'returns not_found' do
       expect(described_class.record_not_found(owner)).to(
         have_attributes(
-          title: 'Owner no encontrado',
+          title: 'Owner not found',
           status_code: :not_found,
           reasons: {},
-          description: 'Owner no existe o no tiene acceso'
+          description: 'Owner does not exist or you do not have access'
         )
       )
     end
@@ -76,10 +76,10 @@ RSpec.describe ErrorResponse, type: :response do
     it 'returns unprocessable_entity' do
       expect(described_class.record_not_saved(owner)).to(
         have_attributes(
-          title: 'Ups! Revisa los siguientes campos',
+          title: 'Ops! Review the fields',
           status_code: :unprocessable_entity,
           reasons: {},
-          description: 'Owner presenta valores incorrectos en sus atributos'
+          description: 'Owner has incorrect values in attributes'
         )
       )
     end
@@ -90,10 +90,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns does can not destroyed' do
         expect(described_class.record_not_destroyed(owner)).to(
           have_attributes(
-            title: 'Ups! No se pudo eliminar',
+            title: 'Ops! Could not be deleted',
             status_code: :unprocessable_entity,
             reasons: {},
-            description: 'No se pudo eliminar el registro'
+            description: 'Record could not be deleted'
           )
         )
       end
@@ -104,10 +104,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns does can not destroyed' do
         expect(described_class.record_not_destroyed(owner, reasons)).to(
           have_attributes(
-            title: 'Ups! No se pudo eliminar',
+            title: 'Ops! Could not be deleted',
             status_code: :unprocessable_entity,
             reasons: 'Por que sisas',
-            description: 'No se pudo eliminar el registro'
+            description: 'Record could not be deleted'
           )
         )
       end
@@ -119,10 +119,10 @@ RSpec.describe ErrorResponse, type: :response do
     it 'returns unknown_error' do
       expect(described_class.unknown_error(error)).to(
         have_attributes(
-          title: 'Un error desconocido ha ocurrido',
+          title: 'Unknown error has occurred',
           status_code: :internal_server_error,
           reasons: { base: 'Por que ajá' },
-          description: 'Un error ha ocurrido'
+          description: 'An error has occurred'
         )
       )
     end
@@ -134,8 +134,8 @@ RSpec.describe ErrorResponse, type: :response do
         have_attributes(
           title: 'Not found',
           status_code: :not_found,
-          reasons: { base: 'El registro no se encontró.' },
-          description: 'Un error ha ocurrido'
+          reasons: { base: 'Record could not be found' },
+          description: 'An error has occurred'
         )
       )
     end
@@ -151,7 +151,7 @@ RSpec.describe ErrorResponse, type: :response do
             title: 'Bad request',
             status_code: :bad_request,
             reasons: 'Ni idea mi fai',
-            description: 'Revisa los parámetros y valores de la solicitud'
+            description: 'Review the parameters and values of the request'
           )
         )
       end
@@ -166,7 +166,7 @@ RSpec.describe ErrorResponse, type: :response do
             title: 'Por que las cosas son asi',
             status_code: :unauthorized,
             reasons: {},
-            description: 'El access token ha expirado o no tiene validez'
+            description: 'Token is invalid or has expired'
           )
         )
       end
@@ -176,10 +176,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns unauthorized' do
         expect(described_class.unauthorized).to(
           have_attributes(
-            title: 'Ups! No está autorizado para realizar esta acción',
+            title: 'Ops! You are not authorized to perform this action',
             status_code: :unauthorized,
             reasons: {},
-            description: 'El access token ha expirado o no tiene validez'
+            description: 'Token is invalid or has expired'
           )
         )
       end
@@ -196,7 +196,7 @@ RSpec.describe ErrorResponse, type: :response do
             title: 'Paila',
             status_code: :forbidden,
             reasons: {},
-            description: 'El rol actual no le permite realizar esta acción'
+            description: 'Token is not allowed to perform the action'
           )
         )
       end
@@ -206,10 +206,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns forbidden' do
         expect(described_class.forbidden).to(
           have_attributes(
-            title: 'Ups! No está autorizado para realizar esta acción',
+            title: 'Ops! You are not authorized to perform this action',
             status_code: :forbidden,
             reasons: {},
-            description: 'El rol actual no le permite realizar esta acción'
+            description: 'Token is not allowed to perform the action'
           )
         )
       end
@@ -221,10 +221,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns unprocessable_entity' do
         expect(described_class.unprocessable_entity(error: 'Jodio')).to(
           have_attributes(
-            title: 'No se puede procesar la entidad',
+            title: 'Ops! Entity could not be processed',
             status_code: :unprocessable_entity,
             reasons: { error: 'Jodio' },
-            description: 'No se puede procesar la entidad'
+            description: 'Ops! Entity could not be processed'
           )
         )
       end
@@ -235,10 +235,10 @@ RSpec.describe ErrorResponse, type: :response do
       it 'returns unprocessable_entity' do
         expect(described_class.unprocessable_entity(error)).to(
           have_attributes(
-            title: 'No se puede procesar la entidad',
+            title: 'Ops! Entity could not be processed',
             status_code: :unprocessable_entity,
             reasons: 'Llevado del caaarajo',
-            description: 'No se puede procesar la entidad'
+            description: 'Ops! Entity could not be processed'
           )
         )
       end

@@ -48,7 +48,7 @@ RSpec.describe SuccessResponse, type: :response do
         have_attributes(
           status_code: :ok,
           title: 'Owner removido',
-          description: 'Owner # ha sido eliminado con éxito'
+          description: 'Owner # has been deleted successfully'
         )
       )
     end

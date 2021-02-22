@@ -22,7 +22,7 @@ class SuccessResponse
   def self.record_destroyed(record)
     new(
       title: "#{record.class.model_name.human} removido",
-      description: "#{record.class.model_name.human} ##{record.id} ha sido eliminado con éxito",
+      description: "#{record.class.model_name.human} ##{record.id} has been deleted successfully",
       status_code: :ok
     )
   end
