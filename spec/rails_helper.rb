@@ -5,6 +5,10 @@ require 'spec_helper'
 require 'simplecov'
 
 SimpleCov.start 'rails' do
+  add_filter '/jobs/'
+  add_filter '/mailers/'
+  add_filter '/channels/'
+
   add_group 'Responders', 'app/responders'
   add_group 'Serializers', 'app/serializers'
   add_group 'Services', 'app/services'
