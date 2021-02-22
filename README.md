@@ -73,7 +73,7 @@ Go to http://locahost:3000
 
 ### API admin
 
-Go to http://locahost:3000/admin
+Go to http://locahost:3000/admin if you could setup your localhost. Or go to https://homie-challenge.herokuapp.com
 
 ```
 email: admin@homie.mx
@@ -110,7 +110,7 @@ You will see `api_version`, `api_key`, `api_secret` and `token`. We are going to
 - Put the values in `api_key` and `api_secret` (***)
 
 Now, we are going to generate a token
-- Click on `No environment` localted top right and select `heroku`
+- Click on `No environment` localted top right and select `localhost` if you could run in your localhost, otherwise select `heroku`
 - Go to `Collections > Create Token` and click on `Send`
 
 The token generated will persist as a global variable. Now you are able to use the API (rest of requests defined in Postman)
