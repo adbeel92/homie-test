@@ -34,8 +34,8 @@ gem 'faker', '~>2.16.0'
 gem 'active_model_serializers', '~>0.10.12'
 
 # Pagination
-gem 'api-pagination', '~> 4.8.2'
-gem 'kaminari', '~> 1.2.1'
+gem 'api-pagination', '~> 4.6.3'
+gem 'kaminari', '~> 1.1.1'
 
 # A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
 gem 'jwt', '~> 2.2.2'

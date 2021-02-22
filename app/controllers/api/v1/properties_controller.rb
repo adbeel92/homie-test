@@ -6,7 +6,16 @@ module Api
       before_action :set_property, only: %i[show update destroy]
 
       def index
-        render json: Property.all, status: :ok
+        paginated_properties = paginate(
+          Property.published.includes(:owner),
+          page: params[:page],
+          per_page: params[:per_page]
+        )
+
+        render json: {
+          collection: paginated_properties,
+          each_serializer: PropertySerializer
+        }, serializer: PaginatedResultsSerializer, root: true
       end
 
       def show
