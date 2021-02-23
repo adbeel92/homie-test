@@ -1,2 +1,2 @@
-web: bin/heroku-web
-release: rails db:migrate
+web: bundle exec rails s
+release: bin/rake db:migrate
