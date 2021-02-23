@@ -73,7 +73,7 @@ Go to http://locahost:3000
 
 ### API admin
 
-Go to http://locahost:3000/admin if you could setup your localhost. Or go to https://homie-challenge.herokuapp.com
+Go to http://locahost:3000/admin if you could setup your localhost. Or go to https://homie-challenge.herokuapp.com/admin
 
 ```
 email: admin@homie.mx
